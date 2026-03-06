@@ -361,60 +361,20 @@ for text in test_inputs:
 
 """### 14. CONCLUSION"""
 
-best_auc   = max(logreg_cv.mean(), nb_cv.mean())
-other_auc  = min(logreg_cv.mean(), nb_cv.mean())
-other_name = "Naive Bayes" if selected_name == "Logistic Regression" else "Logistic Regression"
+Logistic Regression was selected as the best performing model for the IMDB sentiment classification task. The model achieved a cross-validation ROC-AUC score of **0.948**, outperforming Naive Bayes which achieved **0.929**. On the test set, the model achieved an accuracy of **87.33%** with strong precision and recall for both sentiment classes.
 
-report     = classification_report(y_test, y_pred, output_dict=True)
-acc        = report['accuracy']
-prec_neg   = report['0']['precision']
-rec_neg    = report['0']['recall']
-f1_neg     = report['0']['f1-score']
-prec_pos   = report['1']['precision']
-rec_pos    = report['1']['recall']
-f1_pos     = report['1']['f1-score']
+---
+**Key Findings**
+- The IMDB dataset is perfectly balanced with **12,500 positive and 12,500 negative reviews**, ensuring fair model training.
+- Review length and word count distributions are similar across both sentiment classes, indicating that text length alone is not a reliable sentiment indicator.
+- TF-IDF combined with bigrams successfully captures meaningful sentiment phrases such as *watch movie*, *ever seen*, and *special effects*.
+- Important positive keywords include *great, perfect, excellent,* and *amazing*, while negative reviews frequently contain terms such as *worst, boring,* and *disappointing*.
+---
+**Business Insights**
 
-print(f"""
+This sentiment analysis model can be used to automatically monitor audience reactions to movies or other products. Companies can detect negative feedback early, prioritize customer responses, and analyze trending keywords that influence user sentiment.
 
-► Selected Model : {selected_name}
+---
+**Future Improvements**
 
-── Model Performance ──────────────────────────────────────────────
-  Cross-Validation AUC  : {best_auc:.4f}  ({other_name}: {other_auc:.4f})
-  Test Accuracy         : {acc:.2%}
-  ROC-AUC (Test)        : {roc_auc:.2f}
-
-  Class         Precision   Recall   F1-Score
-  Negative      {prec_neg:.2f}        {rec_neg:.2f}     {f1_neg:.2f}
-  Positive      {prec_pos:.2f}        {rec_pos:.2f}     {f1_pos:.2f}
-
-  Confusion Matrix (Test set — 4,981 samples):
-    True Negative  : 2,122  |  False Positive : 364
-    False Negative : 267    |  True Positive  : 2,228
-
-── Top Keywords ────────────────────────────────────────────────────
-  Positive signals : great, excel, perfect, enjoy, love,
-                     favorit, best, amaz, beauti, brilliant
-  Negative signals : worst, bad, wast, aw, bore,
-                     disappoint, fail, poor, noth, wors
-
-── Key Findings ────────────────────────────────────────────────────
-  • Dataset is perfectly balanced: 12,500 negative / 12,500 positive
-  • Both classes have similar review length and word count distributions,
-    meaning length alone is not a reliable churn signal.
-  • "br" artifact from raw HTML tags dominates raw and cleaned word counts
-    → indicates the need for HTML tag removal in preprocessing.
-  • TF-IDF with bigrams (ngram_range=(1,2)) captures meaningful phrases
-    such as "watch movi", "ever seen", and "special effect".
-  • Logistic Regression significantly outperforms Naive Bayes in CV AUC
-    (0.9484 vs 0.9287), confirming it as the better model for this task.
-
-── Business Recommendations ────────────────────────────────────────
-  • Use positive keywords (great, perfect, excel) in marketing campaigns
-    to align messaging with what audiences genuinely praise.
-  • Monitor for spikes in negative keywords (worst, bore, disappoint)
-    as early warning signals of poor reception.
-  • Deploy this model as a real-time review screening tool to flag
-    negative feedback for priority customer service response.
-  • Extend the pipeline with HTML cleaning (remove <br> tags) for
-    cleaner text and potentially higher model accuracy.
-""")
+Further improvements could include removing HTML artifacts such as `<br>` tags during preprocessing and experimenting with more advanced models such as LSTM or transformer-based architectures.
