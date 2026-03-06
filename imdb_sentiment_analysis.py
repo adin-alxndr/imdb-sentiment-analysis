@@ -378,3 +378,4 @@ This sentiment analysis model can be used to automatically monitor audience reac
 **Future Improvements**
 
 Further improvements could include removing HTML artifacts such as `<br>` tags during preprocessing and experimenting with more advanced models such as LSTM or transformer-based architectures.
+"""
