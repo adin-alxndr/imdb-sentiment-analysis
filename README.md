@@ -29,7 +29,7 @@ A Natural Language Processing (NLP) project to classify IMDB movie reviews as **
 ```
 imdb-sentiment-analysis/
 │
-├── IMDB Sentiment Analysis.ipynb   # Main notebook
+├── imdb_sentiment_analysis.py      # Main notebook
 ├── images/                         # Saved visualization outputs
 │   ├── sentiment_distribution.png
 │   ├── review_length_distribution.png
@@ -232,7 +232,7 @@ imdb-sentiment-analysis/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/imdb-sentiment-analysis.git
+   git clone https://github.com/adin-alxndr/imdb-sentiment-analysis.git
    cd imdb-sentiment-analysis
    ```
 
@@ -243,7 +243,7 @@ imdb-sentiment-analysis/
 
 3. **Open the notebook**
    ```bash
-   jupyter notebook "IMDB_Sentiment_Analysis.ipynb"
+   jupyter notebook "imdb_sentiment_analysis.py"
    ```
 
    Or open directly on [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1-ySrGApoOKg8LGaZnb8lRGhdLQGDQ_2u)
